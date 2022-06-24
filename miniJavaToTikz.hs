@@ -1,3 +1,5 @@
+import System.Environment
+
 import Data.List
 import Data.Char
 import Data.Function
@@ -283,4 +285,7 @@ createTikz s = do
   outputTex s (parseStatement contents)
 
 main = do
-    createTikz "example.miniJava"
+    args <- getArgs
+    case args of
+      [] -> putStr "Syntax: miniJavaToTikz <filename>"
+      s : _ -> createTikz s

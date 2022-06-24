@@ -8,3 +8,4 @@
 *.hi
 *.o
 .vscode/*
+*.tex
