@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{calc, decorations.pathmorphing, shapes.geometric, arrows, positioning}
+\begin{document}
+\begin{center}
+\resizebox{!}{\textheight}{
+\begin{tikzpicture}
+\node[circle, draw](start){Start};
+\node[below=of start, rectangle, draw](node0) {\texttt{x = read();}};
+\path[->] (start) edge (node0);
+\node[below=of node0, diamond, draw](node1) {\texttt{x < 0}};
+\path[->] (node0) edge (node1);
+\node[left=of node1, coordinate](node2) {};
+\path[-] (node1) edge node [above] {yes} (node2);
+\node[below=of node2, rectangle, draw](node3) {\texttt{x = - x;}};
+\path[->] (node2) edge (node3);
+\node[right=of node1, coordinate](node4) {};
+\path[-] (node1) edge node [above] {no} (node4);
+\draw let \p1=(node3) in let \p2=(node4) in node[draw, circle](node5) at (.5*\x1 + .5*\x2, \y1-10mm) {};
+\draw let \p1=(node4) in let \p2=(node5) in node[coordinate](node6) at (\x1, \y2) {};
+\draw let \p1=(node3) in let \p2=(node5) in node[coordinate](node7) at (\x1, \y2) {};
+\path[-] (node3) edge (node7);
+\path[-] (node4) edge (node6);
+\path[->] (node7) edge (node5);
+\path[->] (node6) edge (node5);
+\node[below=of node5, rectangle, draw](node7) {\texttt{i = 0;}};
+\path[->] (node5) edge (node7);
+\node[below=of node7, rectangle, draw](node8) {\texttt{j = 0;}};
+\path[->] (node7) edge (node8);
+\node[below=of node8, draw, circle](node9) {};
+\path[->] (node8) edge (node9);
+\node[below=of node9, draw, diamond](node10) {\texttt{i < x}};
+\path[->] (node9) edge (node10);
+\node[right=of node10, coordinate](node11) {};
+\node[left=of node10, coordinate](node12) {};
+\path[-] (node10) edge node [above] {no} (node12);
+\path[-] (node10) edge node [above] {yes} (node11);
+\node[below=of node11, diamond, draw](node13) {\texttt{j == 10}};
+\path[->] (node11) edge (node13);
+\node[left=of node13, coordinate](node14) {};
+\path[-] (node13) edge node [above] {yes} (node14);
+\node[below=of node14, rectangle, draw](node15) {\texttt{j = 0;}};
+\path[->] (node14) edge (node15);
+\node[below=of node15, rectangle, draw](node16) {\texttt{i = i + 1;}};
+\path[->] (node15) edge (node16);
+\node[right=of node13, coordinate](node17) {};
+\path[-] (node13) edge node [above] {no} (node17);
+\node[below=of node17, rectangle, draw](node18) {\texttt{j = j + 1;}};
+\path[->] (node17) edge (node18);
+\node[below=of node18, rectangle, draw](node19) {\texttt{l = 0;}};
+\path[->] (node18) edge (node19);
+\node[below=of node19, draw, circle](node20) {};
+\path[->] (node19) edge (node20);
+\node[below=of node20, draw, diamond](node21) {\texttt{l < i}};
+\path[->] (node20) edge (node21);
+\node[right=of node21, coordinate](node22) {};
+\node[left=of node21, coordinate](node23) {};
+\path[-] (node21) edge node [above] {no} (node23);
+\path[-] (node21) edge node [above] {yes} (node22);
+\node[below=of node22, rectangle, draw](node24) {\texttt{i = i + 1;}};
+\path[->] (node22) edge (node24);
+\node[below=of node24, rectangle, draw](node25) {\texttt{l = l + 1;}};
+\path[->] (node24) edge (node25);
+\node[below=of node25, coordinate](node26) {};
+\node[right=2.0cm of node26, coordinate](node27) {};
+\draw let \p1 = (node27) in let \p2 = (node20) in node[coordinate](node28) at (\x1, \y2) {};
+\path[-] (node25) edge (node26);
+\path[-] (node26) edge (node27);
+\path[-] (node27) edge (node28);
+\path[->] (node28) edge (node20);
+\draw let \p1=(node16) in let \p2=(node23) in node[draw, circle](node29) at (.5*\x1 + .5*\x2, \y2-10mm) {};
+\draw let \p1=(node23) in let \p2=(node29) in node[coordinate](node30) at (\x1, \y2) {};
+\draw let \p1=(node16) in let \p2=(node29) in node[coordinate](node31) at (\x1, \y2) {};
+\path[-] (node16) edge (node31);
+\path[-] (node23) edge (node30);
+\path[->] (node31) edge (node29);
+\path[->] (node30) edge (node29);
+\node[below=of node29, rectangle, draw](node20) {\texttt{k = k + 1;}};
+\path[->] (node29) edge (node20);
+\node[below=of node20, coordinate](node21) {};
+\node[right=8.2cm of node21, coordinate](node22) {};
+\draw let \p1 = (node22) in let \p2 = (node9) in node[coordinate](node23) at (\x1, \y2) {};
+\path[-] (node20) edge (node21);
+\path[-] (node21) edge (node22);
+\path[-] (node22) edge (node23);
+\path[->] (node23) edge (node9);
+\node[below=of node12, rectangle, draw](node24) {\texttt{write(k);}};
+\path[->] (node12) edge (node24);
+\node[below=of node24, circle, draw](end){End};
+\path[->] (node24) edge (end);
+\end{tikzpicture}
+}
+\end{center}
+\end{document}
